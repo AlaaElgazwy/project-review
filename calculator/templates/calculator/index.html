@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify_content: center;
+            align_items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+        }
+
+        .calculator-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            width: 320px;
+            text-align: center;
+        }
+
+        h2 { color: #333; margin-bottom: 20px; }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-size: 18px;
+            box-sizing: border-box; /* لضمان عدم تجاوز الحواف */
+            text-align: center;
+        }
+
+        .buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* عمودين */
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 15px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.1s, background 0.3s;
+            color: white;
+            font-weight: bold;
+        }
+
+        button:active { transform: scale(0.95); }
+
+        .btn-add { background-color: #4CAF50; }
+        .btn-sub { background-color: #f44336; }
+        .btn-mul { background-color: #FF9800; }
+        .btn-div { background-color: #2196F3; }
+
+        .result-box {
+            background-color: #333;
+            color: #0f0; /* لون أخضر فوسفوري مثل الشاشات القديمة */
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 24px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="Calculator-card">
+    <h2>calculator</h2>
+    <form action="" method="POST">
+        {%csrf_token%}
+        <input type="number" name="num1" placeholder="number one" required>
+        <input type="number" name="num2" placeholder="number tow" required>
+        <div class="buttons-grid">
+            <button type="submit" name="op" value="+" class="btn-add">+</button>
+            <button type="submit" name="op" value="-" class="btn-sub">-</button>
+            <button type="submit" name="op" value="*" class="btn-mul">*</button>
+            <button type="submit" name="op" value="/" class="btn-div">/</button>
+
+
+
+        </div>
+
+    </form>
+    {% if result is not None %}
+    <div class="result-box">
+        {{result}}
+    </div>
+    {% endif %}
+</div>
+</body>
+</html>
